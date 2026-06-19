@@ -8,7 +8,7 @@
       <nav class="nav">
         <a href="/" class="nav-link active">Home</a>
         <a href="/dashboard" class="nav-link">Dashboard</a>
-        <button class="login-btn" v-if="!isLoggedIn">Sign In</button>
+        <button class="login-btn" v-if="!isLoggedIn" @click="signIn">Sign In</button>
         <button class="logout-btn" v-else @click="logout">Logout</button>
       </nav>
     </header>
@@ -38,6 +38,7 @@
 
 <script>
 import axios from 'axios'
+import { signInWithRedirect } from 'aws-amplify/auth'
 
 export default {
   data() {
@@ -55,6 +56,13 @@ export default {
     this.fetchStats()
   },
   methods: {
+    async signIn() {
+      try {
+        await signInWithRedirect()
+      } catch (error) {
+        console.error('Login error:', error)
+      }
+    },
     async fetchStats() {
       this.loading = true
       try {
