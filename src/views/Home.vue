@@ -75,6 +75,7 @@ export default {
       try {
         await signOut()
         this.isLoggedIn = false
+        this.fetchStats() // Refresh stats with random numbers
       } catch (error) {
         console.error('Logout error:', error)
       }
@@ -82,8 +83,16 @@ export default {
     async fetchStats() {
       this.loading = true
       try {
-        const response = await axios.get('https://3nhftt97bb.execute-api.eu-north-1.amazonaws.com/prod')
-        this.stats = JSON.parse(response.data.body)
+        if (this.isLoggedIn) {
+          const response = await axios.get('https://3nhftt97bb.execute-api.eu-north-1.amazonaws.com/prod')
+          this.stats = JSON.parse(response.data.body)
+        } else {
+          this.stats = {
+            total: Math.floor(Math.random() * 100) + 10,
+            open: Math.floor(Math.random() * 20) + 1,
+            resolved: Math.floor(Math.random() * 30) + 1
+          }
+        }
       } catch (error) {
         console.error('Error fetching stats:', error)
       } finally {
