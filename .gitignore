@@ -1,0 +1,12 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Sensitive files (if you later add env variables)
+*.local
+.env*
+.secret-*
