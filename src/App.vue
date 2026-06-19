@@ -1,11 +1,16 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="app">
+    <h1>🚀 ServiceNow CDC</h1>
+    <p>Welcome to your incident manager</p>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app {
+  text-align: center;
+  padding: 40px;
+}
+h1 {
+  color: #FF9900;
+}
+</style>
