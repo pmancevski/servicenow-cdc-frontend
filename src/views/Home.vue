@@ -38,7 +38,7 @@
 
 <script>
 import axios from 'axios'
-import { signInWithRedirect } from 'aws-amplify/auth'
+import { signInWithRedirect, getCurrentUser, signOut } from 'aws-amplify/auth'
 
 export default {
   data() {
@@ -52,7 +52,15 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
+    try {
+      const user = await getCurrentUser()
+      if (user) {
+        this.isLoggedIn = true
+      }
+    } catch {
+      this.isLoggedIn = false
+    }
     this.fetchStats()
   },
   methods: {
@@ -61,6 +69,14 @@ export default {
         await signInWithRedirect()
       } catch (error) {
         console.error('Login error:', error)
+      }
+    },
+    async logout() {
+      try {
+        await signOut()
+        this.isLoggedIn = false
+      } catch (error) {
+        console.error('Logout error:', error)
       }
     },
     async fetchStats() {
@@ -73,9 +89,6 @@ export default {
       } finally {
         this.loading = false
       }
-    },
-    logout() {
-      this.isLoggedIn = false
     }
   }
 }
