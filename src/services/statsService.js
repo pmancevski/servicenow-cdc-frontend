@@ -1,9 +1,17 @@
 import axios from 'axios'
+import { fetchAuthSession } from 'aws-amplify/auth'
 
 const API_URL = 'https://3nhftt97bb.execute-api.eu-north-1.amazonaws.com/prod'
 
 export const fetchRealStats = async () => {
-  const response = await axios.get(API_URL)
+  const session = await fetchAuthSession()
+  const token = session.tokens.accessToken.toString()
+  
+  const response = await axios.get(API_URL, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
   return JSON.parse(response.data.body)
 }
 

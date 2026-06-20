@@ -3,6 +3,17 @@
     <Header :isLoggedIn="isLoggedIn" @logout="handleLogout" />
     <main class="main">
       <StatsSection :stats="stats" :loading="loading" />
+      
+      <div class="actions">
+        <button class="primary-btn" @click="$router.push('/create')">Create Incident</button>
+      </div>
+
+      <div class="view-section">
+        <div class="view-row">
+          <input v-model="incidentId" placeholder="Enter Incident ID" class="view-input" />
+          <button class="view-btn" @click="viewIncident">View</button>
+        </div>
+      </div>
     </main>
   </div>
 </template>
@@ -17,7 +28,8 @@ export default {
   components: { Header, StatsSection },
   data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      incidentId: ''
     }
   },
   setup() {
@@ -39,6 +51,11 @@ export default {
     handleLogout() {
       this.isLoggedIn = false
       this.loadStats(false)
+    },
+    viewIncident() {
+      if (this.incidentId) {
+        this.$router.push(`/incident/${this.incidentId}`)
+      }
     }
   }
 }
