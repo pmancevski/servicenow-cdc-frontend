@@ -222,3 +222,49 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+
+/* Create Incident Form */
+.create-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.create-card h1 {
+  color: #232F3E;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.status {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 4px;
+}

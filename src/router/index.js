@@ -12,6 +12,11 @@ const routes = [
     path: '/create',
     name: 'CreateIncident',
     component: CreateIncident
+  },
+  {
+    path: '/create',
+    name: 'CreateIncident',
+    component: CreateIncident
   }
 ]
 

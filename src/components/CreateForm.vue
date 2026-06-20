@@ -34,85 +34,8 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
+<script setup>
+import { useCreateIncident } from '@/composables/useCreateIncident'
 
-export default {
-  data() {
-    return {
-      status: '',
-      form: {
-        short_description: '',
-        description: '',
-        category: 'inquiry',
-        urgency: '3'
-      }
-    }
-  },
-  methods: {
-    async submitIncident() {
-      this.status = 'Creating...'
-      try {
-        const response = await axios.post(
-          'https://your-api-gateway-url/prod/incident',
-          this.form
-        )
-        this.status = '✅ Incident created: ' + response.data.number
-        this.form.short_description = ''
-        this.form.description = ''
-      } catch (error) {
-        this.status = '❌ Error: ' + error.message
-      }
-    }
-  }
-}
+const { status, form, submitIncident } = useCreateIncident()
 </script>
-
-<style scoped>
-.create-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 40px;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-h1 {
-  color: #232F3E;
-  margin-bottom: 24px;
-}
-.form-group {
-  margin-bottom: 16px;
-}
-label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: #555;
-}
-input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-.primary-btn {
-  background: #FF9900;
-  color: #fff;
-  border: none;
-  padding: 12px 32px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-}
-.primary-btn:hover {
-  background: #e68a00;
-}
-.status {
-  margin-top: 12px;
-  padding: 10px;
-  border-radius: 4px;
-}
-</style>
