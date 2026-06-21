@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import CreateIncident from '../views/CreateIncident.vue'
 import IncidentDetail from '../views/IncidentDetail.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 const routes = [
   {
@@ -19,7 +20,12 @@ const routes = [
   name: 'IncidentDetail',
   component: IncidentDetail,
   props: true  // ← Add this
-}
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  }
 ]
 
 const router = createRouter({
