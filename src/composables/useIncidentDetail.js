@@ -1,10 +1,8 @@
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { fetchAuthSession } from 'aws-amplify/auth'
 import axios from 'axios'
 
 export function useIncidentDetail(incidentId) {
-  const router = useRouter()
   const loading = ref(true)
   const error = ref(null)
   const incident = ref({})
@@ -32,14 +30,14 @@ export function useIncidentDetail(incidentId) {
   }
 
   const searchIncident = () => {
-    console.log('Search clicked:', searchId.value)
-    window.location.href = `/incident/${searchId.value}`
-    // router.push(`/incident/${searchId.value}`)
+    if (searchId.value) {
+      window.location.href = `/incident/${searchId.value}`
+    }
   }
 
   const editIncident = () => {
     if (searchId.value) {
-      router.push(`/edit/${searchId.value}`)
+      window.location.href = `/edit/${searchId.value}`
     }
   }
 
