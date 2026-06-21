@@ -3,16 +3,16 @@
     <Header :isLoggedIn="isLoggedIn" @logout="handleLogout" />
     <main class="main">
       <StatsSection :stats="stats" :loading="loading" />
-      
-      <div class="actions">
-        <button class="primary-btn" @click="$router.push('/create')">Create Incident</button>
-      </div>
 
       <div class="view-section">
         <div class="view-row">
-          <input v-model="incidentId" placeholder="Enter Incident ID" class="view-input" />
-          <button class="view-btn" @click="viewIncident">View</button>
+          <input v-model="incidentId" placeholder="Enter Incident Number" class="view-input" />
+          <button class="view-btn" @click="viewIncident">Search</button>
         </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary-btn" @click="$router.push('/create')">Create Incident</button>
       </div>
     </main>
   </div>
